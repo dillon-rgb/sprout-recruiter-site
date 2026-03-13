@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sprout for Recruiters</title>
+  <meta name="description" content="Access 250K+ enriched candidate profiles across engineering, operations, design, and GTM. Supercharge your placements." />
+  <link rel="icon" href="32x32%20copy.png" sizes="32x32" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ───── RESET ───── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: #fff;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, select, textarea { font-family: inherit; }
+
+    /* ───── TOKENS ───── */
+    :root {
+      --emerald-50: #ecfdf5;
+      --emerald-100: #d1fae5;
+      --emerald-200: #a7f3d0;
+      --emerald-400: #34d399;
+      --emerald-600: #059669;
+      --emerald-700: #047857;
+      --emerald-800: #065f46;
+      --emerald-900: #064e3b;
+      --emerald-950: #022c22;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --slate-950: #020617;
+      --max-w: 1120px;
+    }
+
+    /* ───── ANIMATIONS ───── */
+    @keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .anim-fade-up { animation: fade-up .7s ease both; }
+    @keyframes scale-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    .anim-scale-in { animation: scale-in .5s ease both; }
+    @keyframes slide-left { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slide-right { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .2s; }
+    .delay-3 { animation-delay: .3s; }
+
+    /* ───── SCROLL REVEAL ───── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ───── LAYOUT ───── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px) { .container { padding: 0 40px; } }
+
+    /* ───── HEADER ───── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .header-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 24px;
+    }
+    @media (min-width: 768px) { .header-inner { padding: 12px 40px; } }
+    .header-logo img { height: 28px; width: auto; }
+    .header-nav { display: none; gap: 32px; font-size: 14px; font-weight: 600; color: var(--slate-600); }
+    @media (min-width: 768px) { .header-nav { display: flex; } }
+    .header-nav a { transition: color .2s; }
+    .header-nav a:hover { color: var(--slate-900); }
+    .header-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 20px; border-radius: 9999px;
+      background: var(--emerald-900); color: #fff;
+      font-size: 14px; font-weight: 700;
+      transition: background .2s;
+    }
+    .header-cta:hover { background: var(--emerald-800); }
+    .mobile-toggle { display: flex; align-items: center; justify-content: center;
+      padding: 8px; border-radius: 8px; color: var(--slate-600);
+    }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 8px 24px 16px;
+      font-size: 15px; font-weight: 600; color: var(--slate-700);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      display: block; padding: 10px 0;
+    }
+    .mobile-menu a:hover { color: var(--emerald-700); }
+    .mob-cta {
+      margin-top: 8px; text-align: center;
+      padding: 12px; border-radius: 9999px; font-weight: 700; font-size: 14px;
+      background: var(--emerald-900); color: #fff !important;
+    }
+
+    /* ───── HERO ───── */
+    .hero { position: relative; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(167,243,208,.15), transparent);
+    }
+    .hero-inner {
+      position: relative; max-width: 720px; margin: 0 auto;
+      padding: 40px 0 56px; text-align: center;
+    }
+    @media (min-width: 640px) { .hero-inner { padding: 64px 0 80px; } }
+    @media (min-width: 1024px) { .hero-inner { padding: 96px 0 112px; } }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--emerald-50); color: var(--emerald-700);
+      padding: 6px 16px; border-radius: 9999px;
+      font-size: 13px; font-weight: 700; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.25rem); font-weight: 900;
+      letter-spacing: -.03em; line-height: 1.1; color: var(--slate-950);
+    }
+    .hero h1 span { color: var(--emerald-700); }
+    .hero-sub {
+      margin-top: 24px; font-size: clamp(1rem, 2vw, 1.125rem);
+      color: var(--slate-600); line-height: 1.7; max-width: 560px; margin-left: auto; margin-right: auto;
+    }
+    .hero-actions {
+      margin-top: 36px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--emerald-900); color: #fff;
+      padding: 14px 28px; border-radius: 9999px;
+      font-size: 15px; font-weight: 700;
+      box-shadow: 0 10px 30px rgba(6,78,59,.18);
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--emerald-800); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid var(--slate-200); color: var(--slate-700);
+      padding: 14px 28px; border-radius: 9999px;
+      font-size: 15px; font-weight: 700;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--slate-400); color: var(--slate-900); }
+    .hero-stats {
+      margin-top: 48px; display: flex; justify-content: center; gap: 40px;
+    }
+    .hero-stats .stat-value { font-size: 24px; font-weight: 900; color: var(--emerald-800); }
+    .hero-stats .stat-label { font-size: 12px; color: var(--slate-500); }
+
+    /* ───── LOGOS BAR ───── */
+    .logos-bar {
+      border-top: 1px solid var(--slate-100); border-bottom: 1px solid var(--slate-100);
+      background: rgba(248,250,252,.5);
+    }
+    .logos-bar-inner { padding: 40px 0; overflow: hidden; }
+    .logos-bar p {
+      text-align: center; font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--slate-400);
+      margin-bottom: 32px;
+    }
+    .logos-track {
+      display: flex; align-items: center; gap: 64px;
+      width: max-content;
+      animation: scroll-logos 30s linear infinite;
+    }
+    .logos-track:hover { animation-play-state: paused; }
+    @keyframes scroll-logos {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .logos-track img {
+      height: 24px; width: auto; opacity: .4;
+      filter: grayscale(1); transition: opacity .2s, filter .2s;
+      object-fit: contain; flex-shrink: 0;
+    }
+    .logos-track img:hover { opacity: .7; filter: grayscale(0); }
+    .logos-track img[alt="Tesla"]  { height: 38px; }
+    .logos-track img[alt="SpaceX"] { height: 20px; position: relative; top: -3px; }
+    .logos-track img[alt="Google"] { height: 26px; }
+    .logos-track img[alt="Apple"]  { height: 28px; position: relative; top: -2px; }
+    .logos-track img[alt="Meta"]   { height: 20px; }
+    .logos-track img[alt="Amazon"] { height: 22px; }
+    .logos-track img[alt="Nike"]   { height: 22px; }
+    .logos-track img[alt="Uber"]   { height: 18px; }
+    .logos-track img[alt="OpenAI"] { height: 22px; }
+
+    /* ───── HOW IT WORKS ───── */
+    .how-section { padding: 32px 0; }
+    @media (min-width: 640px) { .how-section { padding: 48px 0; } }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; color: var(--emerald-600);
+    }
+    .section-title {
+      margin-top: 16px; font-size: clamp(1.875rem, 4vw, 2.5rem);
+      font-weight: 800; letter-spacing: -.02em; color: var(--slate-950);
+    }
+    .steps-grid {
+      margin-top: 48px; display: grid; gap: 24px;
+    }
+    @media (min-width: 768px) { .steps-grid { grid-template-columns: repeat(3, 1fr); } }
+    .step-card {
+      padding: 24px; border-radius: 16px; border: 1px solid var(--slate-100);
+      background: var(--slate-50); transition: border-color .2s, box-shadow .2s;
+    }
+    .step-card:hover { border-color: var(--emerald-200); box-shadow: 0 4px 24px rgba(6,78,59,.06); }
+    .step-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--emerald-50); color: var(--emerald-700);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .step-card:hover .step-icon { background: var(--emerald-100); }
+    .step-number {
+      display: block; margin-top: 20px; font-size: 12px; font-weight: 700;
+      text-transform: uppercase; color: var(--emerald-600);
+    }
+    .step-card h3 { margin-top: 8px; font-size: 18px; font-weight: 800; color: var(--slate-900); }
+    .step-card p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--slate-600); }
+
+    /* ───── PAIN POINTS ───── */
+    .pain-section {
+      background: var(--slate-950); padding: 32px 0;
+      color: var(--slate-200);
+    }
+    @media (min-width: 640px) { .pain-section { padding: 48px 0; } }
+    .pain-section .section-title { color: #fff; }
+    .pain-section .section-title span { color: var(--slate-400); }
+    .pain-grid { margin-top: 48px; display: grid; gap: 24px; }
+    @media (min-width: 768px) { .pain-grid { grid-template-columns: repeat(3, 1fr); } }
+    .pain-card {
+      padding: 24px; border-radius: 16px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06);
+    }
+    .pain-card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,.06); color: var(--emerald-400);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pain-card h3 { margin-top: 16px; font-size: 16px; font-weight: 700; color: #fff; }
+    .pain-card p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--slate-400); }
+
+    /* ───── BENEFITS ───── */
+    .benefits-section { padding: 48px 0; }
+    @media (min-width: 640px) { .benefits-section { padding: 72px 0; } }
+    .benefits-grid { display: grid; gap: 40px; align-items: center; }
+    @media (min-width: 1024px) { .benefits-grid { grid-template-columns: 1fr 1fr; } }
+    .benefits-text h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 800; color: var(--slate-950); }
+    .benefits-text p { margin-top: 16px; color: var(--slate-600); line-height: 1.7; }
+    .benefits-text a {
+      margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 700; color: var(--emerald-700);
+    }
+    .benefits-items { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .benefit-item {
+      display: flex; align-items: center; gap: 12px;
+      border-radius: 12px; border: 1px solid var(--slate-100);
+      background: rgba(248,250,252,.5); padding: 16px;
+      transition: border-color .2s, background .2s;
+    }
+    .benefit-item:hover { border-color: var(--emerald-200); background: rgba(236,253,245,.3); }
+    .benefit-icon {
+      width: 32px; height: 32px; flex-shrink: 0; border-radius: 8px;
+      background: var(--emerald-100); color: var(--emerald-700);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .benefit-item span { font-size: 14px; font-weight: 600; color: var(--slate-700); }
+
+    /* ───── STATS BANNER ───── */
+    .stats-banner {
+      background: linear-gradient(135deg, var(--emerald-900), var(--emerald-950));
+      padding: 32px 0;
+    }
+    @media (min-width: 640px) { .stats-banner { padding: 48px 0; } }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; text-align: center; }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat-block .big { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: #fff; }
+    .stat-block .label { margin-top: 4px; font-size: 13px; color: var(--emerald-200); }
+
+    /* ───── COMPARISON ───── */
+    .compare-section { padding: 32px 0; }
+    @media (min-width: 640px) { .compare-section { padding: 48px 0; } }
+    .compare-section .section-sub {
+      margin-top: 12px; color: var(--slate-500); max-width: 520px;
+      margin-left: auto; margin-right: auto;
+    }
+    .table-scroll { margin-top: 40px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table {
+      width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0;
+      border-radius: 16px; overflow: hidden; border: 1px solid var(--slate-200);
+    }
+    .compare-table th, .compare-table td {
+      padding: 16px 24px; font-size: 14px; color: var(--slate-500);
+      text-align: left; border-bottom: 1px solid var(--slate-100);
+    }
+    .compare-table th {
+      background: var(--slate-50); font-weight: 700; font-size: 11px;
+      text-transform: uppercase; color: var(--slate-500);
+      letter-spacing: .08em;
+    }
+    .compare-table .highlight { background: var(--emerald-50); color: var(--emerald-900); font-weight: 600; }
+    .swipe-hint { display: block; margin-top: 32px; text-align: center; font-size: 12px; color: var(--slate-400); }
+    @media (min-width: 640px) { .swipe-hint { display: none; } }
+
+    /* ───── TESTIMONIALS ───── */
+    .testimonials-section {
+      border-top: 1px solid var(--slate-100); border-bottom: 1px solid var(--slate-100);
+      background: rgba(248,250,252,.5); padding: 32px 0;
+    }
+    @media (min-width: 640px) { .testimonials-section { padding: 48px 0; } }
+    .testimonials-grid {
+      margin-top: 32px; display: grid; gap: 24px;
+    }
+    @media (min-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); } }
+    .testimonial-card {
+      background: #fff; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+      border-radius: 16px; border: 1px solid var(--slate-100);
+    }
+    .quote-mark { font-size: 32px; font-weight: 900; color: var(--emerald-300); line-height: 1; }
+    .quote-text { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--slate-700); }
+    .attribution { margin-top: 16px; }
+    .attribution .name { font-size: 14px; font-weight: 700; color: var(--slate-900); }
+    .attribution .role { font-size: 13px; color: var(--slate-400); }
+
+    /* ───── PRICING ───── */
+    .pricing-section { padding: 32px 0; }
+    @media (min-width: 640px) { .pricing-section { padding: 48px 0; } }
+    .pricing-grid {
+      margin-top: 40px; display: grid; gap: 24px;
+    }
+    @media (min-width: 768px) { .pricing-grid { grid-template-columns: 1.2fr .8fr; align-items: start; } }
+    .pricing-main {
+      position: relative; padding: 32px; border-radius: 20px;
+      border: 2px solid var(--emerald-200); background: #fff;
+      box-shadow: 0 8px 40px rgba(6,78,59,.06);
+    }
+    .pricing-badge {
+      position: absolute; top: 0; right: 24px;
+      padding: 4px 12px; border-radius: 0 0 0 12px;
+      background: var(--emerald-700); color: #fff;
+      font-size: 12px; font-weight: 700;
+      border-radius: 0 0 8px 8px;
+    }
+    .tier-label { font-size: 14px; font-weight: 700; color: var(--emerald-700); }
+    .tier-price { font-size: 3.5rem; font-weight: 900; color: var(--slate-950); }
+    .tier-note { font-size: 14px; color: var(--slate-500); }
+    .pricing-features { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--slate-700);
+    }
+    .pricing-features .check { color: var(--emerald-600); flex-shrink: 0; }
+    .pricing-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .guarantee-card, .preexisting-card {
+      padding: 24px; border-radius: 16px; background: var(--emerald-50);
+      border: 1px solid var(--emerald-100);
+    }
+    .guarantee-card .card-icon, .preexisting-card .card-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--emerald-100); color: var(--emerald-700);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .guarantee-card h3, .preexisting-card h3 { margin-top: 12px; font-size: 16px; font-weight: 700; }
+    .guarantee-card p, .preexisting-card p { margin-top: 6px; font-size: 14px; color: var(--slate-600); line-height: 1.6; }
+
+    /* ───── FAQs ───── */
+    .faqs-section {
+      border-top: 1px solid var(--slate-100); padding: 32px 0;
+    }
+    @media (min-width: 640px) { .faqs-section { padding: 48px 0; } }
+    .faqs-list { margin-top: 32px; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .faq-btn {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 0; text-align: left; transition: color .2s;
+      border-bottom: 1px solid var(--slate-100); color: var(--slate-800);
+    }
+    .faq-btn:hover { color: var(--emerald-700); }
+    .faq-q { font-size: 16px; font-weight: 700; }
+    .faq-chevron { width: 20px; height: 20px; flex-shrink: 0; transition: transform .3s; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-answer p {
+      padding-bottom: 20px; font-size: 14px; line-height: 1.7; color: var(--slate-600);
+    }
+
+    /* ───── FORM ───── */
+    .form-section {
+      background: var(--slate-50); padding: 32px 0;
+    }
+    @media (min-width: 640px) { .form-section { padding: 48px 0; } }
+    .form-card {
+      display: grid; overflow: hidden; border-radius: 24px;
+      border: 1px solid var(--slate-200); background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    }
+    @media (min-width: 1024px) { .form-card { grid-template-columns: .9fr 1.1fr; } }
+    .form-left {
+      display: flex; flex-direction: column; justify-content: center; gap: 24px;
+      background: linear-gradient(135deg, var(--emerald-900), var(--emerald-950));
+      padding: 24px;
+    }
+    @media (min-width: 640px) { .form-left { padding: 32px; } }
+    @media (min-width: 1024px) { .form-left { padding: 48px; } }
+    .form-left h2 { font-size: 1.875rem; font-weight: 800; color: #fff; }
+    .form-left > p { color: rgba(236,253,245,.9); }
+    .form-left-checks { display: flex; flex-direction: column; gap: 12px; }
+    .form-left-checks .check-line {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--emerald-200);
+    }
+    .form-left-checks .check-line svg { color: var(--emerald-400); flex-shrink: 0; }
+    .form-right { padding: 24px; }
+    @media (min-width: 640px) { .form-right { padding: 32px; } }
+    @media (min-width: 1024px) { .form-right { padding: 48px; } }
+    .form-right form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; gap: 16px; }
+    @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+    .form-field label {
+      display: block; font-size: 14px; font-weight: 600; color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%; padding: 10px 14px; border-radius: 8px;
+      border: 1px solid var(--slate-200); background: var(--slate-50);
+      font-size: 14px; color: var(--slate-900); outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--slate-400); }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+      border-color: var(--emerald-400); box-shadow: 0 0 0 3px rgba(167,243,208,.3);
+    }
+    .form-submit {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--emerald-900); color: #fff;
+      padding: 14px 24px; border-radius: 9999px;
+      font-size: 14px; font-weight: 700;
+      box-shadow: 0 10px 30px rgba(6,78,59,.2);
+      transition: background .2s; border: none; cursor: pointer;
+    }
+    .form-submit:hover { background: var(--emerald-800); }
+    @media (min-width: 640px) { .form-submit { width: auto; } }
+
+    /* Success state */
+    .form-success {
+      display: none; text-align: center; padding: 48px 24px;
+    }
+    .form-success.show { display: block; }
+    .form-success h3 { font-size: 24px; font-weight: 800; color: var(--emerald-900); }
+    .form-success p { margin-top: 8px; color: var(--slate-600); }
+
+    /* ───── FOOTER ───── */
+    .site-footer {
+      border-top: 1px solid var(--slate-200); background: #fff; padding: 32px 0;
+    }
+    @media (min-width: 640px) { .site-footer { padding: 48px 0; } }
+    .footer-inner {
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    @media (min-width: 768px) { .footer-inner { flex-direction: row; } }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand img { height: 26px; width: auto; }
+    .footer-brand span { font-size: 14px; color: var(--slate-400); }
+    .footer-links {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 16px; font-size: 14px; color: var(--slate-500);
+    }
+    @media (min-width: 640px) { .footer-links { gap: 24px; } }
+    .footer-links a { transition: color .2s; }
+    .footer-links a:hover { color: var(--slate-900); }
+
+    .icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="header-logo"><img src="Asset%201%402x%20copy.png" alt="Sprout" /></a>
+    <nav class="header-nav">
+      <a href="#how-it-works">How it works</a>
+      <a href="#why-sprout">Why Sprout</a>
+      <a href="#faqs">FAQs</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="#partner-form" class="header-cta">
+        Get access
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <button class="mobile-toggle" aria-label="Toggle menu" onclick="document.getElementById('mob-menu').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mob-menu" class="mobile-menu">
+    <a href="#how-it-works" onclick="document.getElementById('mob-menu').classList.remove('open')">How it works</a>
+    <a href="#why-sprout" onclick="document.getElementById('mob-menu').classList.remove('open')">Why Sprout</a>
+    <a href="#faqs" onclick="document.getElementById('mob-menu').classList.remove('open')">FAQs</a>
+    <a href="#partner-form" class="mob-cta" onclick="document.getElementById('mob-menu').classList.remove('open')">Get access</a>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-inner anim-fade-up">
+      <div class="hero-badge anim-scale-in delay-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+        250K+ enriched candidate profiles
+      </div>
+      <h1>A new candidate database<br /><span>built for recruiters.</span></h1>
+      <p class="hero-sub">Sprout gives recruiters and agencies access to 250K+ enriched, role-ready profiles across engineering, operations, design, and go-to-market — mainly in the US and Canada.</p>
+      <div class="hero-actions">
+        <a href="#partner-form" class="btn-primary">
+          Request access
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn-secondary">How it works</a>
+      </div>
+      <div class="hero-stats">
+        <div><p class="stat-value">250K+</p><p class="stat-label">Candidates</p></div>
+        <div><p class="stat-value">US & CA</p><p class="stat-label">Primary markets</p></div>
+        <div><p class="stat-value">4</p><p class="stat-label">Talent verticals</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LOGOS ═══════════ -->
+<section class="logos-bar">
+  <div class="container">
+    <div class="logos-bar-inner reveal">
+      <p>Our candidates have worked at</p>
+      <div class="logos-track">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png" alt="Tesla" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" alt="SpaceX" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="Uber" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI" />
+        <!-- Duplicate set for seamless loop -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png" alt="Tesla" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/SpaceX-Logo.svg" alt="SpaceX" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" alt="Uber" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section id="how-it-works" class="how-section">
+  <div class="container">
+    <div class="text-center reveal" style="text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+        How it works
+      </div>
+      <h2 class="section-title">Three steps to better placements</h2>
+    </div>
+    <div class="steps-grid">
+      <article class="step-card reveal">
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <span class="step-number">Step 01</span>
+        <h3>Apply for access</h3>
+        <p>Tell us about your agency, the roles you typically fill, and the markets you serve. We'll review your application and get you onboarded.</p>
+      </article>
+      <article class="step-card reveal" style="transition-delay:.1s">
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg>
+        </div>
+        <span class="step-number">Step 02</span>
+        <h3>Search the database</h3>
+        <p>Browse enriched profiles across engineering, operations, design, and GTM. Filter by skills, location, seniority, and availability to find the right match fast.</p>
+      </article>
+      <article class="step-card reveal" style="transition-delay:.2s">
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+        </div>
+        <span class="step-number">Step 03</span>
+        <h3>Make placements</h3>
+        <p>Reach out to candidates, present them to your clients, and close roles faster. Sprout gives you the supply — you deliver the results.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAIN POINTS ═══════════ -->
+<section class="pain-section">
+  <div class="container">
+    <div style="max-width:640px;margin:0 auto;text-align:center;" class="reveal">
+      <h2 class="section-title">Your sourcing pipeline is running dry.<br /><span>Sound familiar?</span></h2>
+    </div>
+    <div class="pain-grid">
+      <article class="pain-card reveal">
+        <div class="pain-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+        </div>
+        <h3>LinkedIn fatigue</h3>
+        <p>Response rates are dropping. The same candidates are being messaged by dozens of recruiters. You need a fresh, untapped source of talent.</p>
+      </article>
+      <article class="pain-card reveal" style="transition-delay:.1s">
+        <div class="pain-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <h3>Thin talent pools</h3>
+        <p>Your existing databases are stale. Candidates have moved on, changed roles, or gone quiet. You need profiles that are current and enriched.</p>
+      </article>
+      <article class="pain-card reveal" style="transition-delay:.2s">
+        <div class="pain-card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3>Niche roles are brutal</h3>
+        <p>Specialist engineering, design, and GTM roles take forever to fill. You need a database with depth in hard-to-reach verticals.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BENEFITS ═══════════ -->
+<section id="why-sprout" class="benefits-section">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefits-text reveal-left">
+        <h2>Why recruiters choose Sprout</h2>
+        <p>Stop fighting over the same LinkedIn profiles. Sprout gives you an entirely new candidate database to power your placements.</p>
+        <a href="#partner-form">
+          Request access
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="benefits-items">
+        <div class="benefit-item reveal" style="transition-delay:0s">
+          <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <span>250K+ enriched profiles</span>
+        </div>
+        <div class="benefit-item reveal" style="transition-delay:.05s">
+          <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <span>Highly qualified talent</span>
+        </div>
+        <div class="benefit-item reveal" style="transition-delay:.1s">
+          <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <span>Fill roles faster</span>
+        </div>
+        <div class="benefit-item reveal" style="transition-delay:.15s">
+          <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+          <span>Engineers, ops, design & GTM</span>
+        </div>
+        <div class="benefit-item reveal" style="transition-delay:.2s">
+          <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <span>US & Canada focused</span>
+        </div>
+        <div class="benefit-item reveal" style="transition-delay:.25s">
+          <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div>
+          <span>Fresh data, not stale profiles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS BANNER ═══════════ -->
+<section class="stats-banner">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-block reveal"><p class="big">250K+</p><p class="label">Enriched candidate profiles</p></div>
+      <div class="stat-block reveal" style="transition-delay:.1s"><p class="big">4</p><p class="label">Talent verticals</p></div>
+      <div class="stat-block reveal" style="transition-delay:.2s"><p class="big">US & CA</p><p class="label">Primary markets</p></div>
+      <div class="stat-block reveal" style="transition-delay:.3s"><p class="big">Daily</p><p class="label">Database updates</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMPARISON ═══════════ -->
+<section id="comparison" class="compare-section">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <h2 class="section-title">Sprout vs other sourcing channels</h2>
+      <p class="compare-section section-sub" style="font-size:16px;">See how Sprout's database compares to the tools you're already using.</p>
+    </div>
+    <p class="swipe-hint">&larr; Swipe to compare &rarr;</p>
+    <div class="table-scroll reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th class="highlight">Sprout</th>
+            <th>LinkedIn</th>
+            <th>Job boards</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Candidate data</td><td class="highlight">Enriched profiles with skills, intent, and availability</td><td>Self-reported, often outdated</td><td>Resumes only, minimal context</td></tr>
+          <tr><td>Response rates</td><td class="highlight">High — candidates have shown intent</td><td>Declining — inbox overload</td><td>Low — passive applicants</td></tr>
+          <tr><td>Talent depth</td><td class="highlight">Engineers, ops, design, GTM specialists</td><td>Broad but shallow for niche roles</td><td>Volume over quality</td></tr>
+          <tr><td>Data freshness</td><td class="highlight">Updated daily with new enrichment</td><td>Profiles go stale quickly</td><td>Point-in-time snapshots</td></tr>
+          <tr><td>Exclusivity</td><td class="highlight">Candidates not over-contacted by recruiters</td><td>Same profiles messaged by everyone</td><td>Publicly listed candidates</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section class="testimonials-section">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <h2 class="section-title">What recruiters are saying</h2>
+    </div>
+    <div class="testimonials-grid">
+      <article class="testimonial-card reveal">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Sprout gave us access to candidates we'd never have found on LinkedIn. We placed three engineers in our first month using the database.</p>
+        <div class="attribution">
+          <p class="name">Senior Recruiter</p>
+          <p class="role">Boutique tech agency</p>
+        </div>
+      </article>
+      <article class="testimonial-card reveal" style="transition-delay:.1s">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">The enriched profiles saved us hours of research per candidate. We could see skills, experience depth, and availability before even reaching out.</p>
+        <div class="attribution">
+          <p class="name">Founding Partner</p>
+          <p class="role">Executive search firm</p>
+        </div>
+      </article>
+      <article class="testimonial-card reveal" style="transition-delay:.2s">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">We were struggling to fill GTM roles for our clients. Sprout's database had exactly the kind of profiles we needed — strong operators who aren't actively job hunting.</p>
+        <div class="attribution">
+          <p class="name">Head of Delivery</p>
+          <p class="role">Recruitment agency</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQs ═══════════ -->
+<section id="faqs" class="faqs-section">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <h2 class="section-title">Frequently asked questions</h2>
+    </div>
+    <div class="faqs-list">
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Who can access the Sprout database?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer"><p>Sprout is open to independent recruiters and agencies who place talent in engineering, operations, design, and go-to-market roles. We review every application to ensure quality.</p></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.05s">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What kind of candidates are in the database?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer"><p>250K+ enriched profiles across four verticals: software engineering, operations, product design, and go-to-market (sales, marketing, growth). The majority are based in the US and Canada.</p></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What does "enriched" mean?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer"><p>Each profile includes verified skills, experience depth, role-relevant context, and availability signals — far beyond what you'd get from a standard resume or LinkedIn profile.</p></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.15s">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">How much does it cost?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer"><p>We offer flexible pricing depending on your agency size and placement volume. Request access and we'll walk you through the options on a quick call.</p></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.2s">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">How is this different from LinkedIn Recruiter?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer"><p>Sprout candidates have shown active intent and are enriched with role-relevant data. They're not being contacted by dozens of other recruiters, so response rates are significantly higher.</p></div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.25s">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">How quickly can I get access?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer"><p>Most applications are reviewed within 24 hours. Once approved, you'll get immediate access to start searching and sourcing.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA FORM ═══════════ -->
+<section id="partner-form" class="form-section">
+  <div class="container">
+    <div class="form-card">
+      <div class="form-left reveal-left">
+        <h2>Get access to the database</h2>
+        <p>Tell us about your agency and we'll get you set up with access to 250K+ enriched candidate profiles.</p>
+        <div class="form-left-checks">
+          <div class="check-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+            Takes less than 60 seconds
+          </div>
+          <div class="check-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+            Reviewed within 24 hours
+          </div>
+          <div class="check-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+            Immediate access once approved
+          </div>
+        </div>
+      </div>
+      <div class="form-right reveal-right">
+        <form id="contact-form" action="https://formspree.io/f/xzdjgylv" method="POST" onsubmit="handleSubmit(event)">
+          <input type="text" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true" name="website" />
+          <input type="hidden" name="_source" value="recruit.usesprout.com" />
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fullName">Full name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="Jane Smith" />
+            </div>
+            <div class="form-field">
+              <label for="workEmail">Work email *</label>
+              <input type="email" id="workEmail" name="workEmail" required placeholder="you@agency.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000" />
+            </div>
+            <div class="form-field">
+              <label for="company">Agency / Company *</label>
+              <input type="text" id="company" name="company" required placeholder="Your agency name" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="country">Country *</label>
+              <input type="text" id="country" name="country" required placeholder="e.g. United States" />
+            </div>
+            <div class="form-field">
+              <label for="placementVolume">Monthly placements *</label>
+              <select id="placementVolume" name="placementVolume" required>
+                <option value="" disabled selected>How many per month?</option>
+                <option value="1-5">1–5</option>
+                <option value="6-15">6–15</option>
+                <option value="16-50">16–50</option>
+                <option value="50+">50+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="rolesOfInterest">What roles do you typically fill?</label>
+            <textarea id="rolesOfInterest" name="rolesOfInterest" rows="2" placeholder="e.g. Senior Software Engineers, Product Designers, SDRs"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            Request access
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="form-success" id="form-success">
+          <h3>Application received!</h3>
+          <p>We'll review your details and get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Asset%201%402x%20copy.png" alt="Sprout" />
+        <span>&copy; 2026</span>
+      </div>
+      <div class="footer-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#why-sprout">Why Sprout</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#partner-form">Get access</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+  // Intersection Observer for scroll reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    observer.observe(el);
+  });
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(r => {
+      if (r.ok) {
+        form.style.display = 'none';
+        success.classList.add('show');
+        form.reset();
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(() => alert('Something went wrong. Please try again.'));
+  }
+</script>
+
+</body>
+</html>
