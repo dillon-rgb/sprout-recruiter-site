@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sprout for Recruiters</title>
-  <meta name="description" content="Access 250K+ enriched candidate profiles across engineering, operations, design, and GTM. Supercharge your placements." />
+  <meta name="description" content="Access 250K+ enriched candidate profiles across engineering, operations, design, and GTM. Book a discovery call." />
   <link rel="icon" href="32x32%20copy.png" sizes="32x32" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,400&display=swap" rel="stylesheet" />
   <style>
@@ -136,7 +136,7 @@
       font-size: 13px; font-weight: 700; margin-bottom: 24px;
     }
     .hero h1 {
-      font-size: clamp(2rem, 5.5vw, 3.25rem); font-weight: 900;
+      font-size: clamp(2rem, 5.5vw, 3.25rem); font-weight: 700;
       letter-spacing: -.03em; line-height: 1.1; color: var(--slate-950);
     }
     .hero h1 span { color: var(--emerald-700); }
@@ -217,7 +217,7 @@
     }
     .section-title {
       margin-top: 16px; font-size: clamp(1.875rem, 4vw, 2.5rem);
-      font-weight: 800; letter-spacing: -.02em; color: var(--slate-950);
+      font-weight: 700; letter-spacing: -.02em; color: var(--slate-950);
     }
     .steps-grid {
       margin-top: 48px; display: grid; gap: 24px;
@@ -239,7 +239,7 @@
       display: block; margin-top: 20px; font-size: 12px; font-weight: 700;
       text-transform: uppercase; color: var(--emerald-600);
     }
-    .step-card h3 { margin-top: 8px; font-size: 18px; font-weight: 800; color: var(--slate-900); }
+    .step-card h3 { margin-top: 8px; font-size: 18px; font-weight: 700; color: var(--slate-900); }
     .step-card p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--slate-600); }
 
     /* ───── PAIN POINTS ───── */
@@ -261,7 +261,7 @@
       background: rgba(255,255,255,.06); color: var(--emerald-400);
       display: flex; align-items: center; justify-content: center;
     }
-    .pain-card h3 { margin-top: 16px; font-size: 16px; font-weight: 700; color: #fff; }
+    .pain-card h3 { margin-top: 16px; font-size: 16px; font-weight: 600; color: #fff; }
     .pain-card p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--slate-400); }
 
     /* ───── BENEFITS ───── */
@@ -269,7 +269,7 @@
     @media (min-width: 640px) { .benefits-section { padding: 72px 0; } }
     .benefits-grid { display: grid; gap: 40px; align-items: center; }
     @media (min-width: 1024px) { .benefits-grid { grid-template-columns: 1fr 1fr; } }
-    .benefits-text h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 800; color: var(--slate-950); }
+    .benefits-text h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 700; color: var(--slate-950); }
     .benefits-text p { margin-top: 16px; color: var(--slate-600); line-height: 1.7; }
     .benefits-text a {
       margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;
@@ -427,7 +427,7 @@
     }
     @media (min-width: 640px) { .form-left { padding: 32px; } }
     @media (min-width: 1024px) { .form-left { padding: 48px; } }
-    .form-left h2 { font-size: 1.875rem; font-weight: 800; color: #fff; }
+    .form-left h2 { font-size: 1.875rem; font-weight: 700; color: #fff; }
     .form-left > p { color: rgba(236,253,245,.9); }
     .form-left-checks { display: flex; flex-direction: column; gap: 12px; }
     .form-left-checks .check-line {
@@ -471,7 +471,7 @@
       display: none; text-align: center; padding: 48px 24px;
     }
     .form-success.show { display: block; }
-    .form-success h3 { font-size: 24px; font-weight: 800; color: var(--emerald-900); }
+    .form-success h3 { font-size: 24px; font-weight: 700; color: var(--emerald-900); }
     .form-success p { margin-top: 8px; color: var(--slate-600); }
 
     /* ───── FOOTER ───── */
@@ -511,7 +511,7 @@
     </nav>
     <div style="display:flex;align-items:center;gap:12px;">
       <a href="#partner-form" class="header-cta">
-        Get access
+        Book a call
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
       <button class="mobile-toggle" aria-label="Toggle menu" onclick="document.getElementById('mob-menu').classList.toggle('open')">
@@ -523,7 +523,7 @@
     <a href="#how-it-works" onclick="document.getElementById('mob-menu').classList.remove('open')">How it works</a>
     <a href="#why-sprout" onclick="document.getElementById('mob-menu').classList.remove('open')">Why Sprout</a>
     <a href="#faqs" onclick="document.getElementById('mob-menu').classList.remove('open')">FAQs</a>
-    <a href="#partner-form" class="mob-cta" onclick="document.getElementById('mob-menu').classList.remove('open')">Get access</a>
+    <a href="#partner-form" class="mob-cta" onclick="document.getElementById('mob-menu').classList.remove('open')">Book a call</a>
   </div>
 </header>
 
@@ -536,18 +536,18 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
         250K+ enriched candidate profiles
       </div>
-      <h1>A new candidate database<br /><span>built for recruiters.</span></h1>
-      <p class="hero-sub">Sprout gives recruiters and agencies access to 250K+ enriched, role-ready profiles across engineering, operations, design, and go-to-market — mainly in the US and Canada.</p>
+      <h1>Put quality candidates in front<br />of your clients. <span>Fast.</span></h1>
+      <p class="hero-sub">Sprout gives recruiters and agencies access to 250K+ enriched, role-ready profiles across engineering, operations, design, and go-to-market talent.</p>
       <div class="hero-actions">
         <a href="#partner-form" class="btn-primary">
-          Request access
+          Book a discovery call
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
         <a href="#how-it-works" class="btn-secondary">How it works</a>
       </div>
       <div class="hero-stats">
         <div><p class="stat-value">250K+</p><p class="stat-label">Candidates</p></div>
-        <div><p class="stat-value">US & CA</p><p class="stat-label">Primary markets</p></div>
+        <div><p class="stat-value">Global</p><p class="stat-label">Candidate reach</p></div>
         <div><p class="stat-value">4</p><p class="stat-label">Talent verticals</p></div>
       </div>
     </div>
@@ -600,8 +600,8 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
         </div>
         <span class="step-number">Step 01</span>
-        <h3>Apply for access</h3>
-        <p>Tell us about your agency, the roles you typically fill, and the markets you serve. We'll review your application and get you onboarded.</p>
+        <h3>Discovery call</h3>
+        <p>Tell us about your agency, the roles you typically fill, and the markets you serve. We'll walk you through how Sprout works and get you onboarded.</p>
       </article>
       <article class="step-card reveal" style="transition-delay:.1s">
         <div class="step-icon">
@@ -663,7 +663,7 @@
         <h2>Why recruiters choose Sprout</h2>
         <p>Stop fighting over the same LinkedIn profiles. Sprout gives you an entirely new candidate database to power your placements.</p>
         <a href="#partner-form">
-          Request access
+          Book a discovery call
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
@@ -686,7 +686,7 @@
         </div>
         <div class="benefit-item reveal" style="transition-delay:.2s">
           <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <span>US & Canada focused</span>
+          <span>Global candidate reach</span>
         </div>
         <div class="benefit-item reveal" style="transition-delay:.25s">
           <div class="benefit-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div>
@@ -703,7 +703,7 @@
     <div class="stats-grid">
       <div class="stat-block reveal"><p class="big">250K+</p><p class="label">Enriched candidate profiles</p></div>
       <div class="stat-block reveal" style="transition-delay:.1s"><p class="big">4</p><p class="label">Talent verticals</p></div>
-      <div class="stat-block reveal" style="transition-delay:.2s"><p class="big">US & CA</p><p class="label">Primary markets</p></div>
+      <div class="stat-block reveal" style="transition-delay:.2s"><p class="big">Global</p><p class="label">Candidate reach</p></div>
       <div class="stat-block reveal" style="transition-delay:.3s"><p class="big">Daily</p><p class="label">Database updates</p></div>
     </div>
   </div>
@@ -793,7 +793,7 @@
           <span class="faq-q">What kind of candidates are in the database?</span>
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer"><p>250K+ enriched profiles across four verticals: software engineering, operations, product design, and go-to-market (sales, marketing, growth). The majority are based in the US and Canada.</p></div>
+        <div class="faq-answer"><p>250K+ enriched profiles across four verticals: software engineering, operations, product design, and go-to-market (sales, marketing, growth) — with candidates across the globe.</p></div>
       </div>
       <div class="faq-item reveal" style="transition-delay:.1s">
         <button class="faq-btn" onclick="toggleFaq(this)">
@@ -807,7 +807,7 @@
           <span class="faq-q">How much does it cost?</span>
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer"><p>We offer flexible pricing depending on your agency size and placement volume. Request access and we'll walk you through the options on a quick call.</p></div>
+        <div class="faq-answer"><p>We offer flexible pricing depending on your agency size and placement volume. Book a discovery call and we'll walk you through the options.</p></div>
       </div>
       <div class="faq-item reveal" style="transition-delay:.2s">
         <button class="faq-btn" onclick="toggleFaq(this)">
@@ -818,10 +818,10 @@
       </div>
       <div class="faq-item reveal" style="transition-delay:.25s">
         <button class="faq-btn" onclick="toggleFaq(this)">
-          <span class="faq-q">How quickly can I get access?</span>
+          <span class="faq-q">How quickly can I get started?</span>
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
-        <div class="faq-answer"><p>Most applications are reviewed within 24 hours. Once approved, you'll get immediate access to start searching and sourcing.</p></div>
+        <div class="faq-answer"><p>Book a discovery call and we'll have you set up within days. Most teams are sourcing from Sprout within a week.</p></div>
       </div>
     </div>
   </div>
@@ -832,8 +832,8 @@
   <div class="container">
     <div class="form-card">
       <div class="form-left reveal-left">
-        <h2>Get access to the database</h2>
-        <p>Tell us about your agency and we'll get you set up with access to 250K+ enriched candidate profiles.</p>
+        <h2>Book a discovery call</h2>
+        <p>Tell us about your agency and we'll show you how Sprout can supercharge your placements.</p>
         <div class="form-left-checks">
           <div class="check-line">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -841,16 +841,16 @@
           </div>
           <div class="check-line">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
-            Reviewed within 24 hours
+            We respond within 24 hours
           </div>
           <div class="check-line">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
-            Immediate access once approved
+            No commitment required
           </div>
         </div>
       </div>
       <div class="form-right reveal-right">
-        <form id="contact-form" action="https://formspree.io/f/xzdjgylv" method="POST" onsubmit="handleSubmit(event)">
+        <form id="contact-form" action="https://formspree.io/f/xqeybnbz" method="POST" onsubmit="handleSubmit(event)">
           <input type="text" autocomplete="off" tabindex="-1" style="display:none" aria-hidden="true" name="website" />
           <input type="hidden" name="_source" value="recruit.usesprout.com" />
           <div class="form-row">
@@ -894,13 +894,13 @@
             <textarea id="rolesOfInterest" name="rolesOfInterest" rows="2" placeholder="e.g. Senior Software Engineers, Product Designers, SDRs"></textarea>
           </div>
           <button type="submit" class="form-submit">
-            Request access
+            Book a discovery call
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </button>
         </form>
         <div class="form-success" id="form-success">
-          <h3>Application received!</h3>
-          <p>We'll review your details and get back to you within 24 hours.</p>
+          <h3>Thanks! We'll be in touch.</h3>
+          <p>Expect a response within 24 hours to schedule your discovery call.</p>
         </div>
       </div>
     </div>
@@ -919,7 +919,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#why-sprout">Why Sprout</a>
         <a href="#faqs">FAQs</a>
-        <a href="#partner-form">Get access</a>
+        <a href="#partner-form">Book a call</a>
       </div>
     </div>
   </div>
